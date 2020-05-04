@@ -38,17 +38,13 @@ public class UserController {
         return true;
     }*/
 
-    /*@PostMapping("/login")
-    public User login(@RequestBody User user) {
+    @PostMapping("/getUser")
+    public User getUser(@RequestBody User user) {
         User optionalUser = userDao.findByUsername(user.getUsername());
-        if (optionalUser!=null) {
-            if (optionalUser.getPassword().equals(user.getPassword())) {
-                System.out.println("logged");
-                optionalUser.setPassword(null);
-                //session.setAttribute("login", user.getLogin());
-                return optionalUser;
-            }
+        if (optionalUser != null) {
+            optionalUser.setPassword(null);
+            return optionalUser;
         }
         return new User();
-    }*/
+    }
 }

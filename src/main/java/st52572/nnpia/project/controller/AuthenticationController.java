@@ -13,7 +13,7 @@ import st52572.nnpia.project.model.LoginUser;
 import st52572.nnpia.project.model.User;
 import st52572.nnpia.project.service.UserService;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/token")
 public class AuthenticationController {

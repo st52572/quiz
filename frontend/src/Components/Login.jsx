@@ -1,6 +1,7 @@
 import React from 'react';
 import {Input} from "./Input";
 import AuthService from "../service/AuthService";
+import UserProfile from "./UserProfile";
 
 export class Login extends React.Component {
 
@@ -13,10 +14,22 @@ export class Login extends React.Component {
 
     login = (e) => {
         e.preventDefault();
+        const requestOptions = {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({username: this.state.user.username})
+        };
+
         const credentials = {username: this.state.user.username, password: this.state.user.password};
         AuthService.login(credentials).then(res => {
             if (res.data.status === 200) {
                 localStorage.setItem("userInfo", JSON.stringify(res.data.result));
+                fetch('http://localhost:8080/getUser', requestOptions)
+                    .then(response => response.json())
+                    .then(data => {
+                        UserProfile.setId(data.id);
+                        UserProfile.setLogin(data.login);
+                    });
                 window.location.replace("/tests");
             } else {
                 this.setState({message: res.data.message});
