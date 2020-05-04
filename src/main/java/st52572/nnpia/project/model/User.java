@@ -1,7 +1,6 @@
 package st52572.nnpia.project.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,7 +28,7 @@ public class User implements Serializable {
     private String LastName;
 
     @Column(unique = true)
-    private String login;
+    private String username;
 
     @Column
     private String password;

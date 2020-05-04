@@ -1,57 +1,54 @@
 package st52572.nnpia.project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import st52572.nnpia.project.dao.UserDao;
+import st52572.nnpia.project.model.ApiResponse;
 import st52572.nnpia.project.model.User;
-
-import javax.servlet.http.HttpSession;
-import java.util.List;
-import java.util.Optional;
+import st52572.nnpia.project.model.UserDto;
+import st52572.nnpia.project.service.UserService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private UserDao userDao;
 
-    @GetMapping("/users")
+    /*@GetMapping("/users")
     public List<User> getUsers() {
         return userDao.findAll();
-    }
+    }*/
 
     @PostMapping("/addUser")
-    public User addUser(@RequestBody User user) {
-
-        if (!userDao.existsByLogin(user.getLogin())) {
-            //user.setPassword(passwordEncoder.encode(user.getPassword()));
-            System.out.println(user);
-            userDao.save(user);
-            return user;
-        }
-        return null;
+    public ApiResponse<User> saveUser(@RequestBody UserDto user) {
+        return new ApiResponse<>(HttpStatus.OK.value(), "User saved successfully.", userService.save(user));
     }
 
-    @GetMapping(value = {"/delete/{id}"})
+    /*@GetMapping(value = {"/delete/{id}"})
     public boolean deleteUser(@PathVariable int id) {
         userDao.delete(userDao.getOne(id));
         return true;
-    }
+    }*/
 
-    @PostMapping("/login")
+    /*@PostMapping("/login")
     public User login(@RequestBody User user) {
-        Optional<User> optionalUser = userDao.findByLogin(user.getLogin());
-        if (optionalUser.isPresent()) {
-            User findedUser = optionalUser.get();
-            if (findedUser.getPassword().equals(user.getPassword())) {
+        User optionalUser = userDao.findByUsername(user.getUsername());
+        if (optionalUser!=null) {
+            if (optionalUser.getPassword().equals(user.getPassword())) {
                 System.out.println("logged");
-                findedUser.setPassword(null);
+                optionalUser.setPassword(null);
                 //session.setAttribute("login", user.getLogin());
-                return findedUser;
+                return optionalUser;
             }
         }
         return new User();
-    }
+    }*/
 }

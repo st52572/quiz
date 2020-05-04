@@ -35,10 +35,10 @@ export class Registration extends React.Component {
             return {user};                                 // return new object jasper object
         })
     };
-    changeLogin = (login) => {
+    changeUsername = (username) => {
         this.setState(prevState => {
             let user = {...prevState.user};  // creating copy of state variable jasper
-            user.login = login.text;                     // update the name property, assign a new value
+            user.username = username.text;                     // update the name property, assign a new value
             return {user};                                 // return new object jasper object
         })
     };
@@ -55,7 +55,7 @@ export class Registration extends React.Component {
             <div>
                 <Input type={"text"} onChange={this.changeFirstName} text={"firstName"}/>
                 <Input type={"text"} onChange={this.changeLastName} text={"lastName"}/>
-                <Input type={"text"} onChange={this.changeLogin} text={"login"}/>
+                <Input type={"text"} onChange={this.changeUsername} text={"username"}/>
                 <Input type={"current-password"} onChange={this.changePassword} text={"password"}/>
                 <button onClick={this.register}>Registrovat</button>
             </div>
