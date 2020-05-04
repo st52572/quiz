@@ -1,5 +1,5 @@
 import React from 'react';
-import UserProfile from './UserProfile';
+import AuthService from "../service/AuthService";
 
 export class Logout extends React.Component {
 
@@ -10,10 +10,15 @@ export class Logout extends React.Component {
     }
 
 
-    logOut = () =>{
-        UserProfile.setId(-1);
-        UserProfile.setLogin(null);
-        window.location.replace("/login");
+    logOut = () => {
+        AuthService.logOut().then(res => {
+            if (res.data.status === 200) {
+                localStorage.removeItem("userInfo");
+                this.props.history.push("/login");
+            } else {
+                this.setState({message: res.data.message});
+            }
+        });
     };
 
 

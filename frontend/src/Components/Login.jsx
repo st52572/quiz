@@ -17,7 +17,7 @@ export class Login extends React.Component {
         AuthService.login(credentials).then(res => {
             if (res.data.status === 200) {
                 localStorage.setItem("userInfo", JSON.stringify(res.data.result));
-                //this.props.history.push('/list-user');
+                window.location.replace("/tests");
             } else {
                 this.setState({message: res.data.message});
             }

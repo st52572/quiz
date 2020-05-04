@@ -8,9 +8,8 @@ export class CreateTest extends React.Component {
 
     constructor(props) {
         super(props);
-        if(UserProfile.getId() == null || UserProfile.getId() <= 0)
-        {
-            window.location.replace("/login");
+        if (localStorage.getItem("userInfo") == null) {
+            this.props.history.push('/login');
         }
         this.state = {
             count: 0,

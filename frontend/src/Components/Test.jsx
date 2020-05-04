@@ -1,6 +1,5 @@
 import React from 'react';
 import {Input} from "./Input";
-import UserProfile from './UserProfile';
 
 
 export class Test extends React.Component {
@@ -8,9 +7,8 @@ export class Test extends React.Component {
 
     constructor(props) {
         super(props);
-        if(UserProfile.getId() == null || UserProfile.getId() <= 0)
-        {
-            window.location.replace("/login");
+        if (localStorage.getItem("userInfo") == null) {
+            //window.location.replace("/login");
         }
         this.state = {
             result: "",

@@ -1,5 +1,4 @@
 import React from 'react';
-import UserProfile from './UserProfile';
 
 
 export class Tests extends React.Component {
@@ -7,8 +6,8 @@ export class Tests extends React.Component {
 
     constructor() {
         super();
-        if (UserProfile.getId() == null || UserProfile.getId() <= 0) {
-            window.location.replace("/login");
+        if (localStorage.getItem("userInfo") == null) {
+            this.props.history.push('/login');
         }
         this.state = {
             tests: []
