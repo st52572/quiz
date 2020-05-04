@@ -24,7 +24,7 @@ export class Login extends React.Component {
         AuthService.login(credentials).then(res => {
             if (res.data.status === 200) {
                 localStorage.setItem("userInfo", JSON.stringify(res.data.result));
-                fetch('http://localhost:8080/getUser', requestOptions)
+                fetch('http://localhost:8080/users/get', requestOptions)
                     .then(response => response.json())
                     .then(data => {
                         UserProfile.setId(data.id);

@@ -2,10 +2,7 @@ package st52572.nnpia.project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import st52572.nnpia.project.dao.UserDao;
 import st52572.nnpia.project.model.ApiResponse;
 import st52572.nnpia.project.model.User;
@@ -14,6 +11,7 @@ import st52572.nnpia.project.service.UserService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
@@ -27,7 +25,7 @@ public class UserController {
         return userDao.findAll();
     }*/
 
-    @PostMapping("/addUser")
+    @PostMapping("/add")
     public ApiResponse<User> saveUser(@RequestBody UserDto user) {
         return new ApiResponse<>(HttpStatus.OK.value(), "User saved successfully.", userService.save(user));
     }
@@ -38,7 +36,7 @@ public class UserController {
         return true;
     }*/
 
-    @PostMapping("/getUser")
+    @PostMapping("/get")
     public User getUser(@RequestBody User user) {
         User optionalUser = userDao.findByUsername(user.getUsername());
         if (optionalUser != null) {

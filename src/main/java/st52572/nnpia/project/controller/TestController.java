@@ -9,24 +9,25 @@ import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
+@RequestMapping("/tests")
 public class TestController {
 
 
     @Autowired
     private TestDao testDao;
 
-    @PostMapping("/tests")
+    @PostMapping
     public List<Test> getTests() {
         return testDao.findAll();
     }
 
-    @GetMapping(value = {"/test/{id}"})
+    @GetMapping(value = {"/{id}"})
     public Test getTest(@PathVariable int id) {
         Test test = testDao.getOne(id);
         return test;
     }
 
-    @PostMapping("/addTest")
+    @PostMapping("/add")
     public Integer addTest(@RequestBody Test test) {
         System.out.println(test);
         testDao.save(test);

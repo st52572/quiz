@@ -73,7 +73,7 @@ export class CreateTest extends React.Component {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({name: name,user: {id: UserProfile.getId()}})
         };
-        fetch('http://localhost:8080/addTest', requestOptions)
+        fetch('http://localhost:8080/tests/add', requestOptions)
             .then(response => response.json())
             .then(data => this.saveQuestions(data));
     };
@@ -92,7 +92,7 @@ export class CreateTest extends React.Component {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(this.state.test.questions)
         };
-        fetch('http://localhost:8080/saveQuestions', requestOptions)
+        fetch('http://localhost:8080/questions/save', requestOptions)
             .then()
     };
 

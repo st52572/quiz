@@ -17,7 +17,7 @@ export class Registration extends React.Component {
             body: JSON.stringify(this.state.user)
         };
         console.log(JSON.stringify(this.state.user));
-        fetch('http://localhost:8080/addUser', requestOptions)
+        fetch('http://localhost:8080/users/add', requestOptions)
             .then();
     };
 

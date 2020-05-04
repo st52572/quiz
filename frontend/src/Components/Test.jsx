@@ -48,7 +48,7 @@ export class Test extends React.Component {
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(test.questions)
         };
-        fetch('http://localhost:8080/checkTest', requestOptions)
+        fetch('http://localhost:8080/questions/checkTest', requestOptions)
             .then(response => response.json())
             .then(data => this.setState({result: "Result of test: "+ data*100+"%"}));
     };
