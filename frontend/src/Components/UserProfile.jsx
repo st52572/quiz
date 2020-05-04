@@ -1,33 +1,33 @@
 var UserProfile = (function() {
     var id = localStorage.getItem('id');
-    var login = localStorage.getItem('login');
+    var username = localStorage.getItem('username');
 
 
-    var getId = function() {
+    var getId = function () {
         return id;    // Or pull this from cookie/localStorage
     };
 
-    var setId = function(newId) {
+    var setId = function (newId) {
         id = newId;
-        localStorage.setItem('id',newId);
+        localStorage.setItem('id', newId);
         // Also set this in cookie/localStorage
     };
 
-    var getLogin = function() {
-        return login;    // Or pull this from cookie/localStorage
+    var getUsername = function () {
+        return username;    // Or pull this from cookie/localStorage
     };
 
-    var setLogin = function(newLogin) {
-        login = newLogin;
-        localStorage.setItem('login',newLogin);
+    var setUsername = function (newUsername) {
+        username = newUsername;
+        localStorage.setItem('username', newUsername);
         // Also set this in cookie/localStorage
     };
 
     return {
         getId: getId,
         setId: setId,
-        getLogin: getLogin,
-        setLogin: setLogin
+        getUsername: getUsername,
+        setUsername: setUsername
     }
 
 })();

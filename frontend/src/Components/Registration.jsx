@@ -10,7 +10,8 @@ export class Registration extends React.Component {
         this.state = {user: {}}
     }
 
-    register = () => {
+    register = (e) => {
+        e.preventDefault();
         const requestOptions = {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -53,11 +54,13 @@ export class Registration extends React.Component {
     render() {
         return (
             <div>
-                <Input type={"text"} onChange={this.changeFirstName} text={"firstName"}/>
-                <Input type={"text"} onChange={this.changeLastName} text={"lastName"}/>
-                <Input type={"text"} onChange={this.changeUsername} text={"username"}/>
-                <Input type={"current-password"} onChange={this.changePassword} text={"password"}/>
-                <button onClick={this.register}>Registrovat</button>
+                <form>
+                    <Input type={"text"} onChange={this.changeFirstName} text={"firstName"}/>
+                    <Input type={"text"} onChange={this.changeLastName} text={"lastName"}/>
+                    <Input type={"text"} onChange={this.changeUsername} text={"username"}/>
+                    <Input type={"current-password"} onChange={this.changePassword} text={"password"}/>
+                    <button onClick={this.register}>Registrovat</button>
+                </form>
             </div>
         )
     }

@@ -9,7 +9,7 @@ export class CreateTest extends React.Component {
     constructor(props) {
         super(props);
         if (localStorage.getItem("userInfo") == null) {
-            this.props.history.push('/login');
+            window.location.replace("/login");
         }
         this.state = {
             count: 0,
@@ -66,12 +66,14 @@ export class CreateTest extends React.Component {
         this.setState({count: this.state.count - 1})
     };
 
-    createTest = () => {
+    createTest = (e) => {
+        e.preventDefault();
+        alert(UserProfile.getId());
         const name = this.state.test.name;
         const requestOptions = {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({name: name,user: {id: UserProfile.getId()}})
+            body: JSON.stringify({name: name, user: {id: UserProfile.getId()}})
         };
         fetch('http://localhost:8080/tests/add', requestOptions)
             .then(response => response.json())
@@ -106,17 +108,19 @@ export class CreateTest extends React.Component {
                 </div>
                 <div>
                     <button onClick={this.addQuestion}>Add question</button>
-                    {
-                        this.state.test.questions.map((value, index) => <div key={index}>
-                                <Input onChange={this.changeQuestion} type={"text"} index={index}
-                                       text={"Question:"} value={value.question}/>
-                                <Input onChange={this.changeAnswer} type={"text"} index={index}
-                                       text={"Answer:"} value={value.answer}/>
-                                <button onClick={event => this.remove(event, index)}>Remove {index}</button>
-                            </div>
-                        )
-                    }
-                    <button onClick={this.createTest}>Create Test</button>
+                    <form>
+                        {
+                            this.state.test.questions.map((value, index) => <div key={index}>
+                                    <Input onChange={this.changeQuestion} type={"text"} index={index}
+                                           text={"Question:"} value={value.question}/>
+                                    <Input onChange={this.changeAnswer} type={"text"} index={index}
+                                           text={"Answer:"} value={value.answer}/>
+                                    <button onClick={event => this.remove(event, index)}>Remove {index}</button>
+                                </div>
+                            )
+                        }
+                        <button onClick={this.createTest}>Create Test</button>
+                    </form>
                 </div>
             </React.Fragment>
         )

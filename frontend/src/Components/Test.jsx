@@ -20,11 +20,17 @@ export class Test extends React.Component {
 
     componentDidMount() {
         const id = this.props.match.params.id;
+        /*this.setState(prevState => {
+            let test = {...prevState.test};
+            test.questions[0] = {test:{}};
+            test.questions[0].test = {id: this.props.match.params.id};
+            return {test};                            // return new object jasper object
+        });*/
         const requestOptions = {
             method: 'GET',
             headers: {'accepts': 'application/json'},
         };
-        fetch('http://localhost:8080/questions/'+id, requestOptions)
+        fetch('http://localhost:8080/questions/' + id, requestOptions)
             .then(response => response.json())
             .then(data => {
                 this.setState({test: {questions: data}})
