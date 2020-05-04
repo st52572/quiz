@@ -9,7 +9,7 @@ export class App extends React.Component {
         return (
             <div className="App">
                 <div>
-                    <h2>Quizer</h2>
+                    <h2>Quizer!</h2>
                     <Navbar/>
                 </div>
             </div>
